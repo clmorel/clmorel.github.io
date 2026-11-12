@@ -1,0 +1,14 @@
+---
+title: "Enseignement"
+---
+
+## Enseignement actuel – Université de Toulouse
+
+### Licence
+
+- [Mécanique des milieux continus (MMC)](teaching_mmc.qmd) 
+- [Cercle de Mohr intéractif](teaching_mohr.qmd) 
+
+### Master
+
+- *À compléter*

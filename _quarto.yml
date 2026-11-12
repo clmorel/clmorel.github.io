@@ -1,0 +1,26 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "ClaireMorel"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Accueil
+      - href: research.qmd
+        text: Recherche
+      - href: teaching.qmd
+        text: Enseignement
+      - href: files/CV.pdf
+        text: CV
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: false
+    lang: fr
+
+
+

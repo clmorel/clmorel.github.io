@@ -1,0 +1,96 @@
+---
+title: "Cercle de Mohr interactif"
+engine: marimo
+pyproject: |
+  requires-python = ">=3.10"
+  dependencies = ["numpy", "matplotlib"]
+---
+
+Entrez les composantes du tenseur des contraintes (en MPa).
+Le premier chargement peut prendre quelques secondes.
+
+```python {.marimo}
+import marimo as mo
+import numpy as np
+import matplotlib.pyplot as plt
+```
+
+```python {.marimo}
+sxx = mo.ui.number(start=-300, stop=300, step=1, value=40, label="σxx (MPa)")
+syy = mo.ui.number(start=-300, stop=300, step=1, value=-40, label="σyy (MPa)")
+sxy = mo.ui.number(start=-300, stop=300, step=1, value=30, label="σxy (MPa)")
+mo.hstack([sxx, syy, sxy], justify="start")
+```
+
+## Résultats
+
+```python {.marimo}
+S = np.array([[sxx.value, sxy.value],
+              [sxy.value, syy.value]], dtype=float)
+c = (S[0, 0] + S[1, 1]) / 2
+R = np.sqrt((S[0, 0] - S[1, 1])**2 / 4 + S[0, 1]**2)
+s1, s2 = c + R, c - R
+theta = 0.5 * np.arctan2(2 * S[0, 1], S[0, 0] - S[1, 1])
+e1 = np.array([np.cos(theta), np.sin(theta)])
+e2 = np.array([-np.sin(theta), np.cos(theta)])
+
+mo.md(f"""
+| Grandeur | Valeur |
+|:--|:--|
+| Centre du cercle (contrainte moyenne) | {c:.2f} MPa |
+| Rayon du cercle = τ<sub>max</sub> | {R:.2f} MPa |
+| Contrainte principale σ<sub>I</sub> | {s1:.2f} MPa |
+| Contrainte principale σ<sub>II</sub> | {s2:.2f} MPa |
+| Angle entre x et la direction I | {np.degrees(theta):.2f}° |
+| Direction principale I | ({e1[0]:.3f} ; {e1[1]:.3f}) |
+| Direction principale II | ({e2[0]:.3f} ; {e2[1]:.3f}) |
+""")
+```
+
+## Cercle de Mohr
+
+```python {.marimo}
+_fig, _ax = plt.subplots(figsize=(6, 6))
+_t = np.linspace(0, 2 * np.pi, 300)
+_ax.plot(c + R * np.cos(_t), R * np.sin(_t), color="#5c8037", lw=3)
+_ax.plot([S[1, 1], S[0, 0]], [S[0, 1], -S[0, 1]], "ko-")
+_ax.plot([s1, s2], [0, 0], "ro")
+_ax.plot(c, 0, "o", mfc="w", mec="k")
+_ax.text(S[0, 0], -S[0, 1], "  X (facette x)")
+_ax.text(S[1, 1], S[0, 1], "  Y (facette y)")
+_ax.text(s1, 0, "  σI", color="red")
+_ax.text(s2, 0, "  σII", color="red")
+_ax.axhline(0, color="k", lw=0.8)
+_ax.axvline(0, color="k", lw=0.8)
+_ax.set_aspect("equal")
+_ax.grid(True)
+_ax.set_xlabel(r"$\sigma_n$ (MPa)")
+_ax.set_ylabel(r"$\tau_n$ (MPa)")
+_fig
+```
+
+## Directions principales dans le plan (x, y)
+
+```python {.marimo}
+_fig, _ax = plt.subplots(figsize=(6, 6))
+for _v, _col, _lab in [(e1, "red", f"Direction I (σI = {s1:.1f} MPa)"),
+                       (e2, "blue", f"Direction II (σII = {s2:.1f} MPa)")]:
+    _ax.quiver([0, 0], [0, 0], [_v[0], -_v[0]], [_v[1], -_v[1]],
+               angles="xy", scale_units="xy", scale=1, color=_col, label=_lab)
+_a = 0.4
+_carre = np.array([[-_a, -_a], [_a, -_a], [_a, _a], [-_a, _a], [-_a, -_a]])
+_rot = np.array([[np.cos(theta), -np.sin(theta)],
+                 [np.sin(theta),  np.cos(theta)]])
+_el = _carre @ _rot.T
+_ax.plot(_el[:, 0], _el[:, 1], "--", color="gray", label="Élément principal")
+_ax.axhline(0, color="k", lw=0.5, ls="--")
+_ax.axvline(0, color="k", lw=0.5, ls="--")
+_ax.set_xlim(-1.5, 1.5)
+_ax.set_ylim(-1.5, 1.5)
+_ax.set_aspect("equal")
+_ax.grid(True, ls=":", alpha=0.5)
+_ax.set_xlabel("x")
+_ax.set_ylabel("y")
+_ax.legend(loc="upper left", fontsize=9)
+_fig
+```

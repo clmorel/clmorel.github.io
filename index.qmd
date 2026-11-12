@@ -1,0 +1,31 @@
+---
+title: "Prénom Nom"
+image: avatar.png
+about:
+  template: trestles #marquee #jolla, broadside
+  image-width: 8em
+  image-shape: round
+  links:
+    - icon: person-badge
+      text: ORCID
+      href: https://orcid.org/0000-0002-0689-7838
+    - icon: mortarboard
+      text: ICA
+      href: https://ica.cnrs.fr/author/cmorel/
+    - icon: github
+      text: GitHub
+      href: https://github.com/clmorel
+    - icon: envelope
+      text: Email
+      href: mailto:claire.morel@utoulouse.fr
+---
+
+## Bienvenue
+
+Je suis actuellement Maître de Conférences à l'Université de Toulouse et à l'Institut Clément Ader (UMR 5312). 
+
+## Thèmes de recherche
+
+- ...
+- ...
+
