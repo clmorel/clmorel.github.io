@@ -1,1 +1,156 @@
 /* css styles */
+/* ---------- Bandeau ---------- */
+.hero {
+  position: relative;
+  min-height: 60vh;
+  margin-top: -1rem;
+  margin-bottom: 3rem;
+  background-image: url("images/banner2.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;   /* effet parallaxe */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+/* voile sombre pour que le texte reste lisible */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.hero-content {
+  position: relative;
+  padding: 2rem 1rem;
+}
+
+.hero-title {
+  display: block;
+  font-size: 3.2rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.hero-subtitle {
+  display: block;
+  font-size: 1.3rem;
+  opacity: 0.9;
+  margin-bottom: 1.2rem;
+}
+
+.hero .btn {
+  margin: 0.25rem;
+  border-radius: 2rem;
+  padding: 0.4rem 1.1rem;
+}
+
+/* ---------- Photo et présentation ---------- */
+.photo-profil {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.presentation {
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+/* ---------- Téléphone ---------- */
+@media (max-width: 768px) {
+  .hero {
+    background-attachment: scroll;  /* le fixe ne marche pas sur mobile */
+    min-height: 45vh;
+  }
+  .hero-title { font-size: 2.2rem; }
+  .presentation { flex-wrap: wrap; }
+  .presentation .column { width: 100% !important; text-align: center; }
+}
+
+/* Page d'accueil : supprime l'espace entre la barre et la bannière */
+.accueil main.content,
+.accueil #quarto-content,
+.accueil #quarto-document-content {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.accueil .hero {
+  margin-top: -2rem;
+}
+
+/* Liens de la barre : légère mise en valeur au survol */
+.navbar .nav-link:hover {
+  opacity: 0.7;
+}
+
+/* ---------- Bannière de titre des pages ---------- */
+.quarto-title-banner {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.quarto-title-banner .quarto-title {
+  text-align: center;
+}
+
+.quarto-title-banner h1.title {
+  width: 100%;
+  font-weight: 700;
+  font-size: 3.5rem;
+}
+
+/* Photo en fond de bannière : cadrage et voile sombre */
+.quarto-title-banner {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+}
+
+.quarto-title-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.quarto-title-banner > * {
+  position: relative;
+}
+
+.quarto-title-banner {
+  min-height: 40vh;
+  display: flex;
+  align-items: center;
+}
+
+/* ---------- Outil cercle de Mohr ---------- */
+.mohr-panel {
+  background: #f4f6f9;
+  border-left: 4px solid #3b6ea5;
+  border-radius: 10px;
+  padding: 1rem 1.4rem 0.6rem;
+  margin: 1.5rem 0;
+}
+.mohr-panel form { margin-bottom: 0.4rem; }
+.mohr-panel input[type="range"] { accent-color: #3b6ea5; }
+
+.mohr-tiles {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, auto);
+  grid-auto-flow: column;      /* colonne 1 : σI, σII, τmax ; colonne 2 : vecteurs, angle */
+  gap: 0.8rem;
+  max-width: 640px;
+  margin: 1rem auto 2rem;
+}
+.mohr-tiles .tile {
+  background: white;
+  border: 1px

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>research – ClaireMorel</title>
+<title>Activités de recherche – Claire Morel</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -25,6 +25,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -46,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-48eea8e06ff06eb442a2daacfce5ac08.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-ed8dbecfec52f9689a97494d20cb3352.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -74,27 +109,47 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Recherche"
   }
 }</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner h1,
+      .quarto-title-block .quarto-title-banner h2,
+      .quarto-title-block .quarto-title-banner h3,
+      .quarto-title-block .quarto-title-banner h4,
+      .quarto-title-block .quarto-title-banner h5,
+      .quarto-title-block .quarto-title-banner h6
+      {
+        color: #ffffff;
+      }
+
+      .quarto-title-block .quarto-title-banner {
+        color: #ffffff;
+background-image: url(images/banner2.png);
+background-size: cover;
+      }
+</style>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Aller au contenu principal</a>
+<body class="floating nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Aller au contenu principal</a>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site web">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">ClaireMorel</span>
+    <span class="navbar-title">Claire Morel</span>
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Basculer la navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
     <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Accueil</span></a>
@@ -108,7 +163,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Enseignement</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./files/CV.pdf"> 
+    <a class="nav-link" href="./cv.html"> 
 <span class="menu-text">CV</span></a>
   </li>  
 </ul>
@@ -120,20 +175,237 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
-<!-- sidebar -->
-<!-- margin-sidebar -->
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Activités de recherche</h1>
+                      </div>
+  </div>
     
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto" aria-label="Section">
+    <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
+    <h2 id="toc-title">Sur cette page</h2>
+   
+  <ul>
+  <li><a href="#production" id="toc-production" class="nav-link active" data-scroll-target="#production"><i class="bi bi-book"></i> Production scientifique</a></li>
+  <li><a href="#projets" id="toc-projets" class="nav-link" data-scroll-target="#projets"><i class="bi bi-pencil-square"></i> Projets en cours</a>
+  <ul class="collapse">
+  <li><a href="#modélisation-du-comportement-thermomécanique-dune-structure-composite-aéronautique" id="toc-modélisation-du-comportement-thermomécanique-dune-structure-composite-aéronautique" class="nav-link" data-scroll-target="#modélisation-du-comportement-thermomécanique-dune-structure-composite-aéronautique">Modélisation du comportement thermomécanique d’une structure composite aéronautique</a></li>
+  <li><a href="#modélisation-du-comportement-thermomécanique-dex-composites-oxyde-oxyde" id="toc-modélisation-du-comportement-thermomécanique-dex-composites-oxyde-oxyde" class="nav-link" data-scroll-target="#modélisation-du-comportement-thermomécanique-dex-composites-oxyde-oxyde">Modélisation du comportement thermomécanique dex composites oxyde-oxyde</a></li>
+  <li><a href="#approche-globallocal-pour-les-structures-composites-de-lanceurs-spatiaux" id="toc-approche-globallocal-pour-les-structures-composites-de-lanceurs-spatiaux" class="nav-link" data-scroll-target="#approche-globallocal-pour-les-structures-composites-de-lanceurs-spatiaux">Approche global/local pour les structures composites de lanceurs spatiaux</a></li>
+  <li><a href="#usinage-par-jet-deau-abrasif-et-réparation-des-cmc-oxyde" id="toc-usinage-par-jet-deau-abrasif-et-réparation-des-cmc-oxyde" class="nav-link" data-scroll-target="#usinage-par-jet-deau-abrasif-et-réparation-des-cmc-oxyde">Usinage par jet d’eau abrasif et réparation des CMC oxyde</a></li>
+  <li><a href="#modélisation-microscopique-des-cmc-sicsic" id="toc-modélisation-microscopique-des-cmc-sicsic" class="nav-link" data-scroll-target="#modélisation-microscopique-des-cmc-sicsic">Modélisation microscopique des CMC SiC/SiC</a></li>
+  </ul></li>
+  <li><a href="#anterieurs" id="toc-anterieurs" class="nav-link" data-scroll-target="#anterieurs"><i class="bi bi-clock-history"></i> Travaux antérieurs</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content" tabindex="-1"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content quarto-banner-title-block" id="quarto-document-content" tabindex="-1">
 
 
 
 
 
+<p>Mes travaux portent sur la caractérisation et la modélisation du comportement mécanique des composites, en particulier des composites à matrice céramique (CMC), en s’appuyant sur un dialogue essais-calcul à différentes échelles.</p>
+<section id="production" class="level2">
+<h2 class="anchored" data-anchor-id="production"><i class="bi bi-book"></i> Production scientifique</h2>
+<p>Publications et communications mises à jour automatiquement depuis <a href="https://cv.hal.science/claire-morel">mon CV HAL</a>.</p>
+<div class="cell hidden">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="22" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 21;"><span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>halId <span class="op">=</span> <span class="st">"claire-morel"</span>   <span class="co">// ← remplacez par votre idHAL</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co">// Interroge HAL pour un type de document donné</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">halFetch</span>(filtre) {</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> params <span class="op">=</span> <span class="kw">new</span> <span class="fu">URLSearchParams</span>({</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="dt">q</span><span class="op">:</span> <span class="vs">`authIdHal_s:</span><span class="sc">${</span>halId<span class="sc">}</span><span class="vs">`</span><span class="op">,</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="dt">fq</span><span class="op">:</span> filtre<span class="op">,</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="dt">fl</span><span class="op">:</span> <span class="st">"citationFull_s,producedDateY_i"</span><span class="op">,</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="dt">sort</span><span class="op">:</span> <span class="st">"producedDateY_i desc"</span><span class="op">,</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="dt">rows</span><span class="op">:</span> <span class="st">"500"</span><span class="op">,</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="dt">wt</span><span class="op">:</span> <span class="st">"json"</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  <span class="cf">try</span> {</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> r <span class="op">=</span> <span class="cf">await</span> <span class="fu">fetch</span>(<span class="st">"https://api.archives-ouvertes.fr/search/?"</span> <span class="op">+</span> params)<span class="op">;</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> j <span class="op">=</span> <span class="cf">await</span> r<span class="op">.</span><span class="fu">json</span>()<span class="op">;</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> j<span class="op">.</span><span class="at">response</span><span class="op">.</span><span class="at">docs</span><span class="op">;</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">catch</span> (e) {</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">null</span><span class="op">;</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="co">// Affiche la liste, regroupée par année</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">halRender</span>(docs<span class="op">,</span> messageVide) {</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (docs <span class="op">===</span> <span class="kw">null</span>)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;p&gt;&lt;em&gt;Impossible de joindre HAL pour le moment.</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="vs">      Consultez directement &lt;a href="https://cv.hal.science/</span><span class="sc">${</span>halId<span class="sc">}</span><span class="vs">"&gt;mon CV HAL&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;`</span><span class="op">;</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (docs<span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span>)</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;p&gt;&lt;em&gt;</span><span class="sc">${</span>messageVide<span class="sc">}</span><span class="vs">&lt;/em&gt;&lt;/p&gt;`</span><span class="op">;</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> conteneur <span class="op">=</span> <span class="fu">html</span><span class="vs">`&lt;div class="hal-liste"&gt;&lt;/div&gt;`</span><span class="op">;</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> annees <span class="op">=</span> [<span class="op">...</span><span class="kw">new</span> <span class="bu">Set</span>(docs<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">producedDateY_i</span>))]<span class="op">;</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">const</span> a <span class="kw">of</span> annees) {</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>    conteneur<span class="op">.</span><span class="fu">append</span>(<span class="fu">html</span><span class="vs">`&lt;p&gt;&lt;strong&gt;</span><span class="sc">${</span>a<span class="sc">}</span><span class="vs">&lt;/strong&gt;&lt;/p&gt;`</span>)<span class="op">;</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> ul <span class="op">=</span> <span class="fu">html</span><span class="vs">`&lt;ul&gt;&lt;/ul&gt;`</span><span class="op">;</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">const</span> d <span class="kw">of</span> docs<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">producedDateY_i</span> <span class="op">===</span> a)) {</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> li <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">"li"</span>)<span class="op">;</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>      li<span class="op">.</span><span class="at">innerHTML</span> <span class="op">=</span> d<span class="op">.</span><span class="at">citationFull_s</span><span class="op">;</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>      ul<span class="op">.</span><span class="fu">append</span>(li)<span class="op">;</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>    conteneur<span class="op">.</span><span class="fu">append</span>(ul)<span class="op">;</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> conteneur<span class="op">;</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
 
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-1-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<details class="pub-section">
+<summary>
+Publications
+</summary>
+<p><strong>Articles dans des revues internationales à comité de lecture</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="73" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 72;"><span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a><span class="fu">halRender</span>(<span class="cf">await</span> <span class="fu">halFetch</span>(<span class="st">"docType_s:ART"</span>)<span class="op">,</span> <span class="st">"Aucun article trouvé sur HAL."</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</details>
+<details class="pub-section">
+<summary>
+Communications
+</summary>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="83" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 82;"><span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a><span class="fu">halRender</span>(<span class="cf">await</span> <span class="fu">halFetch</span>(<span class="st">"docType_s:(COMM OR POSTER)"</span>)<span class="op">,</span> <span class="st">"Aucune communication trouvée sur HAL."</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</details>
+<details class="pub-section">
+<summary>
+Thèse
+</summary>
+<p><strong>Influence de défauts de fabrication sur le comportement mécanique de composites tubulaires SiC/SiC</strong> <a href="https://theses.fr/2023UPAST006">⟨theses.fr⟩</a></p>
+<p><strong>Claire Morel</strong> — Thèse de doctorat, Université Paris-Saclay, soutenue le 5 janvier 2023.</p>
+<ul>
+<li><strong>Laboratoires :</strong> Laboratoire de Mécanique Paris-Saclay (LMPS, Université Paris-Saclay, CentraleSupélec, ENS Paris-Saclay, CNRS) et Service de Recherche en Matériaux Appliqués (SRMA, CEA Saclay)</li>
+<li><strong>École doctorale :</strong> n° 579 – Sciences Mécaniques et Énergétiques, Matériaux et Géosciences (SMEMaG)</li>
+<li><strong>Direction :</strong> E. Baranger (LMPS) ; co-encadrement : J. Lamon (LMPS), C. Lorrette (CEA), J. Braun (CEA)</li>
+<li><strong>Jury :</strong> G. Vignoles (président), N. Godin (rapporteure), C. Hochard (rapporteur), T. Cutard (examinateur)</li>
+<li><strong>Financement :</strong> CEA</li>
+</ul>
+<p>Les composites SiC/SiC sont envisagés pour remplacer les gaines de combustible en alliage de zirconium des réacteurs à eau pressurisée, en raison de leur excellente tenue à haute température. Cette thèse étudie l’influence de défauts introduits lors de la fabrication de tubes en enroulement filamentaire : l’ajout de silicium dans la matrice à cœur, et la rectification des surfaces (épaisseur de <em>seal coat</em>). Des essais de traction cyclés, des observations post-mortem et des modèles analytiques simplifiés permettent de quantifier l’effet de ces défauts sur le comportement élastique et endommageable des tubes.</p>
+</details>
+</section>
+<section id="projets" class="level2">
+<h2 class="anchored" data-anchor-id="projets"><i class="bi bi-pencil-square"></i> Projets en cours</h2>
+<section id="modélisation-du-comportement-thermomécanique-dune-structure-composite-aéronautique" class="level3">
+<h3 class="anchored" data-anchor-id="modélisation-du-comportement-thermomécanique-dune-structure-composite-aéronautique">Modélisation du comportement thermomécanique d’une structure composite aéronautique</h3>
+<p><strong>Équipe :</strong> J. Naciri (doctorant),<strong>C. Morel</strong>, C. Bouvet<br>
+<strong>Partenaires :</strong> Segula Technologies<br>
+<strong>Depuis</strong> 2024</p>
+<!-- ![Légende de la figure](images/dpm.jpg){width=80%} -->
+<p>Ce projet vise à fiabiliser le <em>Discrete Ply Model</em> (DPM), un modèle développé à l’ICA qui représente de manière discrète la fissuration matricielle et le délaminage à l’échelle du pli. Une version thermo-mécanique du modèle est développée et confrontée à des essais coupons richement instrumentés (corrélation d’images, thermographie infrarouge) : traction, flexion, compression, plaques trouées, dépliage de cornières.</p>
+<p><strong>Mots-clés :</strong> Discrete Ply Model, endommagement, CMC oxyde, thermographie infrarouge</p>
+</section>
+<section id="modélisation-du-comportement-thermomécanique-dex-composites-oxyde-oxyde" class="level3">
+<h3 class="anchored" data-anchor-id="modélisation-du-comportement-thermomécanique-dex-composites-oxyde-oxyde">Modélisation du comportement thermomécanique dex composites oxyde-oxyde</h3>
+<p><strong>Équipe :</strong> A. Garnier (doctorant),<strong>C. Morel</strong>, C. Bouvet, G. Dusserre, T. Cutard<br>
+<strong>Partenaires :</strong> Safran Ceramics<br>
+<strong>Depuis</strong> 2024</p>
+</section>
+<section id="approche-globallocal-pour-les-structures-composites-de-lanceurs-spatiaux" class="level3">
+<h3 class="anchored" data-anchor-id="approche-globallocal-pour-les-structures-composites-de-lanceurs-spatiaux">Approche global/local pour les structures composites de lanceurs spatiaux</h3>
+<p><strong>Équipe :</strong> H. Brunet (doctorante), J.-F. Ferrero, P. Navarro, S. Marguet, <strong>C. Morel</strong><br>
+<strong>Partenaires :</strong> CNES, CT Ingénierie<br>
+<strong>Depuis</strong> 2023</p>
+<!-- ![Légende de la figure](images/global-local.jpg){width=80%} -->
+<p>Les structures composites épaisses des lanceurs (propulseurs, inter-étages) peuvent présenter des défauts de fabrication ou d’utilisation, fissures ou délaminages, critiques notamment dans une logique de réutilisation. Ce projet développe une stratégie de modélisation global/local bidirectionnelle, qui intègre la propagation des défauts à l’échelle locale dès les premières étapes du dimensionnement global.</p>
+<p><strong>Mots-clés :</strong> global/local, défauts, propagation, stratifiés épais</p>
+</section>
+<section id="usinage-par-jet-deau-abrasif-et-réparation-des-cmc-oxyde" class="level3">
+<h3 class="anchored" data-anchor-id="usinage-par-jet-deau-abrasif-et-réparation-des-cmc-oxyde">Usinage par jet d’eau abrasif et réparation des CMC oxyde</h3>
+<p><strong>Équipe :</strong> M. Latour (doctorante), <strong>C. Morel</strong>, T. Cutard, R. Zitoune, L. Crouzeix, G. Dusserre<br>
+<strong>Partenaires :</strong> Safran Ceramics<br>
+<strong>Depuis</strong> 2023</p>
+<!-- ![Légende de la figure](images/jet-eau.jpg){width=80%} -->
+<p>En vue de la réparation de pièces aéronautiques, ce projet explore l’usinage non débouchant d’un CMC oxyde/oxyde par jet d’eau abrasif haute pression, ainsi que l’assemblage, sans boulon ni rivet, d’un composite rapporté sur le composite d’origine. Les travaux portent sur la maîtrise de la profondeur usinée et la qualité de surface obtenue.</p>
+<p><strong>Mots-clés :</strong> CMC oxyde, jet d’eau abrasif, usinage non débouchant, réparation</p>
+</section>
+<section id="modélisation-microscopique-des-cmc-sicsic" class="level3">
+<h3 class="anchored" data-anchor-id="modélisation-microscopique-des-cmc-sicsic">Modélisation microscopique des CMC SiC/SiC</h3>
+<p><strong>Équipe :</strong> <strong>C. Morel</strong>, E. Baranger (LMPS), P. Navarro ; S. Julian-Jacques (stage M2R, 2026)<br>
+<strong>Partenaires :</strong> LMPS, CEA<br>
+<strong>Depuis</strong> 2019</p>
+<!-- ![Légende de la figure](images/ver.jpg){width=80%} -->
+<p>Ces travaux visent à relier les propriétés des constituants (fibres, matrice, interphase, porosité) au comportement des tubes SiC/SiC. Des volumes élémentaires représentatifs permettent de décrire le comportement élastique, puis un modèle à l’échelle de la structure remonte aux propriétés du tube.<br>
+Côté endommagement, des modèles de <em>shear-lag</em> analytiques et numériques, associés à une description probabiliste de la rupture (loi de Weibull, processus de Poisson), décrivent l’apparition de la fissuration matricielle dans les composites unidirectionnels.<br>
+</p>
+<p><strong>Mots-clés :</strong> VER, CMC SiC/SiC, shear-lag, rupture probabiliste</p>
+</section>
+</section>
+<section id="anterieurs" class="level2">
+<h2 class="anchored" data-anchor-id="anterieurs"><i class="bi bi-clock-history"></i> Travaux antérieurs</h2>
+<ul>
+<li><strong>Influence de défauts de fabrication sur des tubes SiC/SiC</strong> (thèse, 2019–2023, LMPS / CEA) : effet du silicium à cœur et de la rectification sur le comportement élastique et endommageable de tubes en enroulement filamentaire. &lt;!– - <strong>Caractérisation d’anneaux oxyde/oxyde en enroulement filamentaire</strong> (ATER, 2023, avec Saint-Gobain Research Provence) : stéréo-corrélation et modélisation de l’essai sur anneau.</li>
+<li><strong>Composites épais lin/époxy en flexion trois points</strong> (ATER, 2023, avec l’UQTR, Canada) : corrélation d’images et modélisation de l’endommagement. –&gt;</li>
+<li><strong>Matériaux architecturés à comportement de second gradient</strong> (M1, 2017, LMT Cachan) : conception d’éprouvettes et d’essais à conditions aux limites riches.</li>
+<li><strong>État de surface de pièces en fabrication additive métallique</strong> (M1, 2017, UFABC, Brésil) : plan d’expériences sur les paramètres d’impression DMLS.</li>
+</ul>
+
+
+</section>
 
 </main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImhhbElkID0gXCJjbGFpcmUtbW9yZWxcIiAgIC8vIOKGkCByZW1wbGFjZXogcGFyIHZvdHJlIGlkSEFMXHJcblxyXG4vLyBJbnRlcnJvZ2UgSEFMIHBvdXIgdW4gdHlwZSBkZSBkb2N1bWVudCBkb25uw6lcclxuYXN5bmMgZnVuY3Rpb24gaGFsRmV0Y2goZmlsdHJlKSB7XHJcbiAgY29uc3QgcGFyYW1zID0gbmV3IFVSTFNlYXJjaFBhcmFtcyh7XHJcbiAgICBxOiBgYXV0aElkSGFsX3M6JHtoYWxJZH1gLFxyXG4gICAgZnE6IGZpbHRyZSxcclxuICAgIGZsOiBcImNpdGF0aW9uRnVsbF9zLHByb2R1Y2VkRGF0ZVlfaVwiLFxyXG4gICAgc29ydDogXCJwcm9kdWNlZERhdGVZX2kgZGVzY1wiLFxyXG4gICAgcm93czogXCI1MDBcIixcclxuICAgIHd0OiBcImpzb25cIlxyXG4gIH0pO1xyXG4gIHRyeSB7XHJcbiAgICBjb25zdCByID0gYXdhaXQgZmV0Y2goXCJodHRwczovL2FwaS5hcmNoaXZlcy1vdXZlcnRlcy5mci9zZWFyY2gvP1wiICsgcGFyYW1zKTtcclxuICAgIGNvbnN0IGogPSBhd2FpdCByLmpzb24oKTtcclxuICAgIHJldHVybiBqLnJlc3BvbnNlLmRvY3M7XHJcbiAgfSBjYXRjaCAoZSkge1xyXG4gICAgcmV0dXJuIG51bGw7XHJcbiAgfVxyXG59XHJcblxyXG4vLyBBZmZpY2hlIGxhIGxpc3RlLCByZWdyb3Vww6llIHBhciBhbm7DqWVcclxuZnVuY3Rpb24gaGFsUmVuZGVyKGRvY3MsIG1lc3NhZ2VWaWRlKSB7XHJcbiAgaWYgKGRvY3MgPT09IG51bGwpXHJcbiAgICByZXR1cm4gaHRtbGA8cD48ZW0+SW1wb3NzaWJsZSBkZSBqb2luZHJlIEhBTCBwb3VyIGxlIG1vbWVudC5cclxuICAgICAgQ29uc3VsdGV6IGRpcmVjdGVtZW50IDxhIGhyZWY9XCJodHRwczovL2N2LmhhbC5zY2llbmNlLyR7aGFsSWR9XCI+bW9uIENWIEhBTDwvYT4uPC9lbT48L3A+YDtcclxuICBpZiAoZG9jcy5sZW5ndGggPT09IDApXHJcbiAgICByZXR1cm4gaHRtbGA8cD48ZW0+JHttZXNzYWdlVmlkZX08L2VtPjwvcD5gO1xyXG5cclxuICBjb25zdCBjb250ZW5ldXIgPSBodG1sYDxkaXYgY2xhc3M9XCJoYWwtbGlzdGVcIj48L2Rpdj5gO1xyXG4gIGNvbnN0IGFubmVlcyA9IFsuLi5uZXcgU2V0KGRvY3MubWFwKGQgPT4gZC5wcm9kdWNlZERhdGVZX2kpKV07XHJcbiAgZm9yIChjb25zdCBhIG9mIGFubmVlcykge1xyXG4gICAgY29udGVuZXVyLmFwcGVuZChodG1sYDxwPjxzdHJvbmc+JHthfTwvc3Ryb25nPjwvcD5gKTtcclxuICAgIGNvbnN0IHVsID0gaHRtbGA8dWw+PC91bD5gO1xyXG4gICAgZm9yIChjb25zdCBkIG9mIGRvY3MuZmlsdGVyKGQgPT4gZC5wcm9kdWNlZERhdGVZX2kgPT09IGEpKSB7XHJcbiAgICAgIGNvbnN0IGxpID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImxpXCIpO1xyXG4gICAgICBsaS5pbm5lckhUTUwgPSBkLmNpdGF0aW9uRnVsbF9zO1xyXG4gICAgICB1bC5hcHBlbmQobGkpO1xyXG4gICAgfVxyXG4gICAgY29udGVuZXVyLmFwcGVuZCh1bCk7XHJcbiAgfVxyXG4gIHJldHVybiBjb250ZW5ldXI7XHJcbn1cclxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0yIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiaGFsUmVuZGVyKGF3YWl0IGhhbEZldGNoKFwiZG9jVHlwZV9zOkFSVFwiKSwgXCJBdWN1biBhcnRpY2xlIHRyb3V2w6kgc3VyIEhBTC5cIilcclxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0zIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiaGFsUmVuZGVyKGF3YWl0IGhhbEZldGNoKFwiZG9jVHlwZV9zOihDT01NIE9SIFBPU1RFUilcIiksIFwiQXVjdW5lIGNvbW11bmljYXRpb24gdHJvdXbDqWUgc3VyIEhBTC5cIilcclxuIn1dfQ==
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

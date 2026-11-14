@@ -1,14 +1,51 @@
 ---
-title: "Enseignement"
+title: "Activités d'enseignement"
+title-block-banner: images/banner2.png
+title-block-banner-color: "#ffffff"
+toc: true
+toc-title: "Sur cette page"
+toc-location: left
 ---
 
-## Enseignement actuel – Université de Toulouse
+Maître de Conférences en Génie Mécanique à l'Université de Toulouse depuis 2023,
+j'enseigne la mécanique des structures et des matériaux de la Licence 2 au
+Master 1, pour environ 220 h équivalent TD par an.
+
+## <i class="bi bi-mortarboard"></i> Enseignement actuel – Université de Toulouse {#actuel}
 
 ### Licence
 
-- [Mécanique des milieux continus (MMC)](teaching_mmc.qmd) 
-- [Cercle de Mohr intéractif](teaching_mohr.qmd) 
+- [Mécanique des Milieux Continus (MMC)](teaching_mmc.qmd) — L3 Génie Mécanique
+  et L3 par apprentissage (cours et TD)
+- Résistance Des Matériaux — L2 et L3 (TD et TP)
+- Informatique scientifique — L3 (TP)
+- Matériaux : traitements thermiques et diagrammes de phase — L3 (TD)
 
-### Master
+### Master Génie Mécanique en Aéronautique
 
-- *À compléter*
+- Fatigue-rupture — M1 (cours et TD)
+- Fabrication des composites — M1 (TP)
+- Dimensionnement des structures composites — M1 (TP)
+- Travaux encadrés de recherche — M1
+
+### Autres activités
+
+- Participation à l'encadrement d'étudiants pour le concours *Pont Composite* organisé par SAMPE France
+
+<!-- ## <i class="bi bi-briefcase"></i> Responsabilités pédagogiques {#responsabilites}
+
+- Responsable du module de MMC en L3 par apprentissage
+- Montage de la partie expérimentale des TP de composites en M1
+- Encadrement d'étudiants pour le concours *Pont Composite* organisé par SAMPE France
+- Suivi d'alternants, de la L3 au M2
+- Participation aux journées portes ouvertes et au salon Infosup -->
+
+## <i class="bi bi-clock-history"></i> Enseignements antérieurs {#anterieurs}
+
+- **2022–2023** — ATER à l'IUT Génie Mécanique et Productique, Université
+  Toulouse 3 – Paul Sabatier : mécanique, dimensionnement des
+  structures, matériaux composites, éco-conception
+- **2019–2022** — Vacations à Polytech Paris-Saclay : RDM, méthodes
+  expérimentales, comportement plastique, analyse de cycle de vie
+- **2018–2019** — Interrogatrice en sciences de l'ingénieur et mathématiques,
+  EPF École d'ingénieurs

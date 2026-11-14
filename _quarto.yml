@@ -1,18 +1,22 @@
 project:
   type: website
   output-dir: docs
+  resources:
+    - images/
 
 website:
-  title: "ClaireMorel"
+  title: "Claire Morel"
   navbar:
-    left:
+    background: "#333333"
+    foreground: "#ffffff"
+    right:
       - href: index.qmd
         text: Accueil
       - href: research.qmd
         text: Recherche
       - href: teaching.qmd
         text: Enseignement
-      - href: files/CV.pdf
+      - href: cv.qmd
         text: CV
 
 format:
@@ -21,6 +25,7 @@ format:
     css: styles.css
     toc: false
     lang: fr
+
 
 
 

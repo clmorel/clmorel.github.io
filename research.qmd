@@ -1,0 +1,215 @@
+---
+title: "Activités de recherche"
+title-block-banner: images/banner2.png
+title-block-banner-color: "#ffffff"
+toc: true
+toc-title: "Sur cette page"
+toc-location: left
+---
+
+Mes travaux portent sur la caractérisation et la modélisation du comportement
+mécanique des composites, en particulier des composites à matrice céramique
+(CMC), en s'appuyant sur un dialogue essais-calcul à différentes échelles.
+
+## <i class="bi bi-book"></i> Production scientifique {#production}
+
+Publications et communications mises à jour automatiquement depuis
+[mon CV HAL](https://cv.hal.science/claire-morel).
+
+```{ojs}
+//| echo: false
+//| output: false
+halId = "claire-morel"   // ← remplacez par votre idHAL
+
+// Interroge HAL pour un type de document donné
+async function halFetch(filtre) {
+  const params = new URLSearchParams({
+    q: `authIdHal_s:${halId}`,
+    fq: filtre,
+    fl: "citationFull_s,producedDateY_i",
+    sort: "producedDateY_i desc",
+    rows: "500",
+    wt: "json"
+  });
+  try {
+    const r = await fetch("https://api.archives-ouvertes.fr/search/?" + params);
+    const j = await r.json();
+    return j.response.docs;
+  } catch (e) {
+    return null;
+  }
+}
+
+// Affiche la liste, regroupée par année
+function halRender(docs, messageVide) {
+  if (docs === null)
+    return html`<p><em>Impossible de joindre HAL pour le moment.
+      Consultez directement <a href="https://cv.hal.science/${halId}">mon CV HAL</a>.</em></p>`;
+  if (docs.length === 0)
+    return html`<p><em>${messageVide}</em></p>`;
+
+  const conteneur = html`<div class="hal-liste"></div>`;
+  const annees = [...new Set(docs.map(d => d.producedDateY_i))];
+  for (const a of annees) {
+    conteneur.append(html`<p><strong>${a}</strong></p>`);
+    const ul = html`<ul></ul>`;
+    for (const d of docs.filter(d => d.producedDateY_i === a)) {
+      const li = document.createElement("li");
+      li.innerHTML = d.citationFull_s;
+      ul.append(li);
+    }
+    conteneur.append(ul);
+  }
+  return conteneur;
+}
+```
+
+<details class="pub-section">
+<summary>Publications</summary>
+
+**Articles dans des revues internationales à comité de lecture**
+
+```{ojs}
+//| echo: false
+halRender(await halFetch("docType_s:ART"), "Aucun article trouvé sur HAL.")
+```
+
+</details>
+
+<details class="pub-section">
+<summary>Communications</summary>
+
+```{ojs}
+//| echo: false
+halRender(await halFetch("docType_s:(COMM OR POSTER)"), "Aucune communication trouvée sur HAL.")
+```
+
+</details>
+
+<details class="pub-section">
+<summary>Thèse</summary>
+
+**Influence de défauts de fabrication sur le comportement mécanique de
+composites tubulaires SiC/SiC** [⟨theses.fr⟩](https://theses.fr/2023UPAST006)
+
+**Claire Morel** — Thèse de doctorat, Université Paris-Saclay, soutenue le
+5 janvier 2023.
+
+- **Laboratoires :** Laboratoire de Mécanique Paris-Saclay (LMPS, Université
+  Paris-Saclay, CentraleSupélec, ENS Paris-Saclay, CNRS) et Service de Recherche
+  en Matériaux Appliqués (SRMA, CEA Saclay)
+- **École doctorale :** n° 579 – Sciences Mécaniques et Énergétiques, Matériaux et
+  Géosciences (SMEMaG)
+- **Direction :** E. Baranger (LMPS) ; co-encadrement : J. Lamon (LMPS),
+  C. Lorrette (CEA), J. Braun (CEA)
+- **Jury :** G. Vignoles (président), N. Godin (rapporteure), C. Hochard
+  (rapporteur), T. Cutard (examinateur)
+- **Financement :** CEA
+
+Les composites SiC/SiC sont envisagés pour remplacer les gaines de combustible
+en alliage de zirconium des réacteurs à eau pressurisée, en raison de leur
+excellente tenue à haute température. Cette thèse étudie l'influence de défauts
+introduits lors de la fabrication de tubes en enroulement filamentaire :
+l'ajout de silicium dans la matrice à cœur, et la rectification des surfaces
+(épaisseur de *seal coat*). Des essais de traction cyclés, des observations
+post-mortem et des modèles analytiques simplifiés permettent de quantifier
+l'effet de ces défauts sur le comportement élastique et endommageable des tubes.
+
+</details>
+
+## <i class="bi bi-pencil-square"></i> Projets en cours {#projets}
+
+###  Modélisation du comportement thermomécanique d'une structure composite aéronautique
+
+**Équipe :** J. Naciri (doctorant),**C. Morel**, C. Bouvet \
+**Partenaires :** Segula Technologies \
+**Depuis** 2024
+
+<!-- ![Légende de la figure](images/dpm.jpg){width=80%} -->
+
+Ce projet vise à fiabiliser le *Discrete Ply Model* (DPM), un modèle développé à
+l'ICA qui représente de manière discrète la fissuration matricielle et le
+délaminage à l'échelle du pli. Une version thermo-mécanique du modèle est
+développée et confrontée à des essais coupons richement instrumentés
+(corrélation d'images, thermographie infrarouge) : traction, flexion,
+compression, plaques trouées, dépliage de cornières.
+
+**Mots-clés :** Discrete Ply Model, endommagement, CMC oxyde, thermographie infrarouge
+
+###  Modélisation du comportement thermomécanique dex composites oxyde-oxyde
+
+**Équipe :** A. Garnier (doctorant),**C. Morel**, C. Bouvet, G. Dusserre, T. Cutard  \
+**Partenaires :** Safran Ceramics \
+**Depuis** 2024
+
+
+
+
+### Approche global/local pour les structures composites de lanceurs spatiaux
+
+**Équipe :** H. Brunet (doctorante), J.-F. Ferrero, P. Navarro, S. Marguet, **C. Morel** \
+**Partenaires :** CNES, CT Ingénierie \
+**Depuis** 2023
+
+<!-- ![Légende de la figure](images/global-local.jpg){width=80%} -->
+
+Les structures composites épaisses des lanceurs (propulseurs, inter-étages)
+peuvent présenter des défauts de fabrication ou d'utilisation, fissures ou
+délaminages, critiques notamment dans une logique de réutilisation. Ce projet
+développe une stratégie de modélisation global/local bidirectionnelle, qui
+intègre la propagation des défauts à l'échelle locale dès les premières étapes
+du dimensionnement global.
+
+**Mots-clés :** global/local, défauts, propagation, stratifiés épais
+
+### Usinage par jet d'eau abrasif et réparation des CMC oxyde
+
+**Équipe :** M. Latour (doctorante), **C. Morel**, T. Cutard, R. Zitoune, L. Crouzeix,
+G. Dusserre \
+**Partenaires :** Safran Ceramics \
+**Depuis** 2023
+
+<!-- ![Légende de la figure](images/jet-eau.jpg){width=80%} -->
+
+En vue de la réparation de pièces aéronautiques, ce projet explore l'usinage
+non débouchant d'un CMC oxyde/oxyde par jet d'eau abrasif haute pression, ainsi
+que l'assemblage, sans boulon ni rivet, d'un composite rapporté sur le
+composite d'origine. Les travaux portent sur la maîtrise de la profondeur usinée
+et la qualité de surface obtenue.
+
+**Mots-clés :** CMC oxyde, jet d'eau abrasif, usinage non débouchant, réparation
+
+### Modélisation microscopique des CMC SiC/SiC
+
+**Équipe :** **C. Morel**, E. Baranger (LMPS), P. Navarro ;
+S. Julian-Jacques (stage M2R, 2026) \
+**Partenaires :** LMPS, CEA \
+**Depuis** 2019
+
+<!-- ![Légende de la figure](images/ver.jpg){width=80%} -->
+
+Ces travaux visent à relier les propriétés des constituants (fibres, matrice,
+interphase, porosité) au comportement des tubes SiC/SiC. Des volumes élémentaires
+représentatifs permettent de décrire le comportement élastique, puis un modèle à
+l'échelle de la structure remonte aux propriétés du tube. \
+Côté endommagement, des modèles de *shear-lag* analytiques et numériques,
+associés à une description probabiliste de la rupture (loi de Weibull, processus
+de Poisson), décrivent l'apparition de la fissuration matricielle dans les
+composites unidirectionnels.\
+
+**Mots-clés :** VER, CMC SiC/SiC, shear-lag, rupture probabiliste
+
+## <i class="bi bi-clock-history"></i> Travaux antérieurs {#anterieurs}
+
+- **Influence de défauts de fabrication sur des tubes SiC/SiC** (thèse, 2019–2023,
+  LMPS / CEA) : effet du silicium à cœur et de la rectification sur le comportement
+  élastique et endommageable de tubes en enroulement filamentaire.
+<!-- - **Caractérisation d'anneaux oxyde/oxyde en enroulement filamentaire** (ATER, 2023,
+  avec Saint-Gobain Research Provence) : stéréo-corrélation et modélisation de
+  l'essai sur anneau.
+- **Composites épais lin/époxy en flexion trois points** (ATER, 2023, avec l'UQTR,
+  Canada) : corrélation d'images et modélisation de l'endommagement. -->
+- **Matériaux architecturés à comportement de second gradient** (M1, 2017,
+  LMT Cachan) : conception d'éprouvettes et d'essais à conditions aux limites riches.
+- **État de surface de pièces en fabrication additive métallique** (M1, 2017,
+  UFABC, Brésil) : plan d'expériences sur les paramètres d'impression DMLS.
