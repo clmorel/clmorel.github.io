@@ -154,3 +154,43 @@
 .mohr-tiles .tile {
   background: white;
   border: 1px
+
+  /* ---------- Sections dépliables de l'outil Mohr ---------- */
+details.mohr-reveal {
+  margin: 1rem 0;
+  border: 1px solid #e3e7ec;
+  border-radius: 10px;
+  background: #fafbfc;
+}
+
+details.mohr-reveal > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 0.8rem 1.2rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #2b3a4a;
+  border-radius: 10px;
+}
+
+details.mohr-reveal > summary::-webkit-details-marker { display: none; }
+
+details.mohr-reveal > summary::before {
+  content: "▸";
+  display: inline-block;
+  margin-right: 0.6rem;
+  color: #3b6ea5;
+  transition: transform 0.2s;
+}
+
+details.mohr-reveal[open] > summary::before { transform: rotate(90deg); }
+
+details.mohr-reveal > summary:hover { background: #eef2f7; }
+
+details.mohr-reveal[open] {
+  padding-bottom: 1rem;
+}
+
+details.mohr-reveal > *:not(summary) {
+  padding: 0 1.2rem;
+}
