@@ -200,3 +200,281 @@ html`<style>
 Les droites pleines sont les directions principales (flèches sortantes : traction, rentrantes : compression). Les droites violettes en pointillés sont les directions de cisaillement maximal, à 45° des directions principales.
 
 </details>
+
+### Exercice - rosette de déformation
+
+Une rosette est composée de trois jauges collées selon les angles θ<sub>a</sub>,
+θ<sub>b</sub> et θ<sub>c</sub>, mesurés depuis l'axe x.
+
+::: {.mohr-panel}
+**Rosette** : angles des jauges (°) et déformations mesurées (µm/m).
+
+:::: {.columns}
+::: {.column width="50%"}
+```{ojs}
+//| echo: false
+viewof rTa = Inputs.range([0, 180], {value: 0,  step: 5, label: html`θ<sub>a</sub> (°)`})
+viewof rTb = Inputs.range([0, 180], {value: 45, step: 5, label: html`θ<sub>b</sub> (°)`})
+viewof rTc = Inputs.range([0, 180], {value: 90, step: 5, label: html`θ<sub>c</sub> (°)`})
+```
+:::
+
+::: {.column width="50%"}
+```{ojs}
+//| echo: false
+viewof rEa = Inputs.range([-3000, 3000], {value: 600,  step: 10, label: html`ε<sub>a</sub> (µm/m)`})
+viewof rEb = Inputs.range([-3000, 3000], {value: 400,  step: 10, label: html`ε<sub>b</sub> (µm/m)`})
+viewof rEc = Inputs.range([-3000, 3000], {value: -200, step: 10, label: html`ε<sub>c</sub> (µm/m)`})
+```
+:::
+::::
+
+```{ojs}
+//| echo: false
+{
+  const W = 760, H = 290, cx = W / 2, cy = 255;
+  const jauges = [
+    {n: "a", t: rTa, e: rEa, col: "#3d8b5f", r: 48},
+    {n: "b", t: rTb, e: rEb, col: "#b5487a", r: 64},
+    {n: "c", t: rTc, e: rEc, col: "#4a8fa8", r: 80}
+  ];
+  const P = (r, t) => [cx + r * Math.cos(t * rDeg), cy - r * Math.sin(t * rDeg)];
+
+  let grille = "M 100 -10";
+  for (let k = 0; k < 6; k++) {
+    const y = -10 + 4 * k, xb = k % 2 === 0 ? 165 : 100;
+    grille += ` L ${xb} ${y}` + (k < 5 ? ` L ${xb} ${y + 4}` : "");
+  }
+
+  let s = `<svg viewBox="0 0 ${W} ${H}" style="width:100%; max-width:${W}px; display:block;
+             margin: 0.5rem auto 0.8rem; font-family: inherit;">
+    <defs>
+      <marker id="rfleche" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M0,0 L10,5 L0,10 z" fill="#8a94a0"/>
+      </marker>
+    </defs>
+    <line x1="${cx - 240}" y1="${cy}" x2="${cx + 240}" y2="${cy}" stroke="#8a94a0" stroke-width="1.5" marker-end="url(#rfleche)"/>
+    <line x1="${cx}" y1="${cy + 10}" x2="${cx}" y2="${cy - 240}" stroke="#8a94a0" stroke-width="1.5" marker-end="url(#rfleche)"/>
+    <text x="${cx + 243}" y="${cy + 18}" fill="#6b7785" font-size="15" font-style="italic">x</text>
+    <text x="${cx + 10}" y="${cy - 230}" fill="#6b7785" font-size="15" font-style="italic">y</text>`;
+
+  for (const j of jauges) {
+    if (j.t > 0) {
+      const [xe, ye] = P(j.r, j.t);
+      const [xl, yl] = P(j.r + 11, j.t / 2);
+      s += `<path d="M ${cx + j.r} ${cy} A ${j.r} ${j.r} 0 0 0 ${xe} ${ye}"
+              fill="none" stroke="${j.col}" stroke-width="2"/>
+            <text x="${xl}" y="${yl}" fill="${j.col}" font-size="12" font-weight="bold"
+              text-anchor="middle" dominant-baseline="middle">θ${j.n}</text>`;
+    }
+    s += `<g transform="translate(${cx},${cy}) rotate(${-j.t})">
+      <line x1="0" y1="0" x2="92" y2="0" stroke="${j.col}" stroke-width="1.2" stroke-dasharray="4,3"/>
+      <rect x="92" y="-17" width="82" height="34" rx="5" fill="${j.col}" fill-opacity="0.12"
+            stroke="${j.col}" stroke-width="1.5"/>
+      <path d="${grille}" fill="none" stroke="${j.col}" stroke-width="1.6"/>
+      <rect x="174" y="-11" width="11" height="8" rx="2" fill="${j.col}"/>
+      <rect x="174" y="3"   width="11" height="8" rx="2" fill="${j.col}"/>
+    </g>`;
+    const [xt, yt] = P(205, j.t);
+    const c = Math.cos(j.t * rDeg);
+    const anchor = c > 0.25 ? "start" : c < -0.25 ? "end" : "middle";
+    s += `<text x="${xt}" y="${yt}" fill="${j.col}" font-size="13" font-weight="bold"
+            text-anchor="${anchor}" dominant-baseline="middle">
+            ${j.n} · ${j.t}° · ${j.e} µm/m</text>`;
+  }
+
+  s += `<circle cx="${cx}" cy="${cy}" r="4" fill="#2b3a4a"/></svg>`;
+  const div = document.createElement("div");
+  div.innerHTML = s;
+  return div;
+}
+```
+:::
+
+```{ojs}
+//| echo: false
+//| output: false
+rDeg = Math.PI / 180
+rRow = t => [Math.cos(t * rDeg) ** 2, Math.sin(t * rDeg) ** 2,
+             Math.sin(t * rDeg) * Math.cos(t * rDeg)]
+rDet = M => M[0][0] * (M[1][1] * M[2][2] - M[1][2] * M[2][1])
+          - M[0][1] * (M[1][0] * M[2][2] - M[1][2] * M[2][0])
+          + M[0][2] * (M[1][0] * M[2][1] - M[1][1] * M[2][0])
+rSol = {
+  const A = [rRow(rTa), rRow(rTb), rRow(rTc)];
+  const b = [rEa, rEb, rEc];
+  const D = rDet(A);
+  if (Math.abs(D) < 1e-6) return null;       // jauges parallèles : système non résoluble
+  const col = k => A.map((r, i) => r.map((v, j) => (j === k ? b[i] : v)));
+  return {exx: rDet(col(0)) / D, eyy: rDet(col(1)) / D, gxy: rDet(col(2)) / D};
+}
+rOK    = rSol !== null
+rS     = rSol ?? {exx: 0, eyy: 0, gxy: 0}
+rC     = (rS.exx + rS.eyy) / 2                          // centre du cercle
+rR     = Math.hypot((rS.exx - rS.eyy) / 2, rS.gxy / 2)  // rayon (en ε)
+rE1    = rC + rR
+rE2    = rC - rR
+rGmax  = 2 * rR                                         // distorsion maximale
+rTh    = 0.5 * Math.atan2(rS.gxy, rS.exx - rS.eyy)
+rThDeg = rTh / rDeg
+// point du cercle (ε_n, γ_n) associé à une direction θ
+// même convention que l'exercice précédent : la facette x est en (ε_xx, −γ_xy)
+rPt = t => {
+  const a = 2 * t * rDeg;
+  return {s: rC + (rS.exx - rS.eyy) / 2 * Math.cos(a) + rS.gxy / 2 * Math.sin(a),
+          t: (rS.exx - rS.eyy) * Math.sin(a) - rS.gxy * Math.cos(a)};
+}
+rCol = ({bleu: "#3b6ea5", orange: "#d98c2b", violet: "#7b5ea7",
+         vert: "#3d8b5f", gris: "#8a94a0"})
+```
+
+
+
+<details class="mohr-reveal">
+<summary>Afficher les résultats</summary>
+
+Chaque jauge mesure l'allongement dans sa direction :
+
+$$
+\varepsilon(\theta) = \varepsilon_{xx}\cos^2\theta + \varepsilon_{yy}\sin^2\theta
++ \gamma_{xy}\sin\theta\cos\theta
+$$
+
+Les trois mesures donnent un système de trois équations dont les inconnues sont
+ε<sub>xx</sub>, ε<sub>yy</sub> et γ<sub>xy</sub>. On en déduit ensuite le cercle
+de Mohr des déformations et les directions principales.
+
+```{ojs}
+//| echo: false
+rOK ? html`<style>
+  .rt-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+             max-width: 760px; margin: 16px auto 32px; }
+  .rt-card { background: #fff; border: 1px solid #e3e7ec; border-radius: 12px;
+             padding: 14px 18px; box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+             display: flex; flex-direction: column; gap: 2px; }
+  .rt-lab  { font-size: 0.9rem; color: #6b7785; }
+  .rt-val  { font-size: 1.6rem; font-weight: 700; line-height: 1.25; }
+  .rt-unit { font-size: 0.8rem; color: #8a94a0; }
+  .rt-xy  { border-top: 5px solid #3d8b5f; } .rt-xy  .rt-val { color: #3d8b5f; }
+  .rt-I   { border-top: 5px solid #d98c2b; } .rt-I   .rt-val { color: #d98c2b; }
+  .rt-II  { border-top: 5px solid #3b6ea5; } .rt-II  .rt-val { color: #3b6ea5; }
+  .rt-tau { border-top: 5px solid #7b5ea7; } .rt-tau .rt-val { color: #7b5ea7; }
+  .rt-ang { border-top: 5px solid #2b3a4a; } .rt-ang .rt-val { color: #2b3a4a; }
+  .rt-centre { grid-column: 2; }
+  @media (max-width: 768px) {
+    .rt-grid { grid-template-columns: 1fr; }
+    .rt-centre { grid-column: auto; }
+  }
+</style>
+<div class="rt-grid">
+  <div class="rt-card rt-xy"><span class="rt-lab">ε<sub>xx</sub></span>
+    <span class="rt-val">${rS.exx.toFixed(0)}</span><span class="rt-unit">µm/m</span></div>
+  <div class="rt-card rt-xy"><span class="rt-lab">ε<sub>yy</sub></span>
+    <span class="rt-val">${rS.eyy.toFixed(0)}</span><span class="rt-unit">µm/m</span></div>
+  <div class="rt-card rt-xy"><span class="rt-lab">γ<sub>xy</sub> (distorsion)</span>
+    <span class="rt-val">${rS.gxy.toFixed(0)}</span><span class="rt-unit">µm/m</span></div>
+
+  <div class="rt-card rt-I"><span class="rt-lab">Déformation principale ε<sub>I</sub></span>
+    <span class="rt-val">${rE1.toFixed(0)}</span><span class="rt-unit">µm/m</span></div>
+  <div class="rt-card rt-II"><span class="rt-lab">Déformation principale ε<sub>II</sub></span>
+    <span class="rt-val">${rE2.toFixed(0)}</span><span class="rt-unit">µm/m</span></div>
+  <div class="rt-card rt-tau"><span class="rt-lab">Distorsion maximale γ<sub>max</sub></span>
+    <span class="rt-val">${rGmax.toFixed(0)}</span><span class="rt-unit">µm/m</span></div>
+
+  <div class="rt-card rt-ang rt-centre"><span class="rt-lab">Angle θ<sub>p</sub> entre x et I</span>
+    <span class="rt-val">${rThDeg.toFixed(1)}°</span><span class="rt-unit">degrés</span></div>
+</div>`
+: html`<p style="color:#b03a2e"><strong>Système non résoluble :</strong> deux jauges ont la même
+  direction (angles égaux ou à 180° près). Choisissez trois directions différentes.</p>`
+```
+
+:::: {.columns .mohr-graphs}
+::: {.column width="50%"}
+#### Cercle de Mohr des déformations
+
+```{ojs}
+//| echo: false
+{
+  if (!rOK) return html`<p><em>Choisissez trois directions de jauges différentes.</em></p>`;
+  const cercle = d3.range(0, 361).map(a => ({s: rC + rR * Math.cos(a * rDeg),
+                                             t: 2 * rR * Math.sin(a * rDeg)}));
+  const jauges = [["a", rTa], ["b", rTb], ["c", rTc]].map(([n, t]) => ({...rPt(t), label: n}));
+  const X = {...rPt(0), label: "X"};
+  const Y = {...rPt(90), label: "Y"};
+  const P = [{s: rE1, t: 0, label: `εI = ${rE1.toFixed(0)}`, dx: 6, anchor: "start"},
+             {s: rE2, t: 0, label: `εII = ${rE2.toFixed(0)}`, dx: -6, anchor: "end"}];
+  const G = [{s: rC, t: rGmax, label: "γmax"}, {s: rC, t: -rGmax, label: ""}];
+  const m = Math.max(rR, 1) * 1.5;
+  return Plot.plot({
+    width: 420, height: 420,
+    x: {domain: [rC - m, rC + m], label: "εn (µm/m) →"},
+    y: {domain: [-2 * m, 2 * m], label: "↑ γn (µm/m)"},
+    grid: true,
+    marks: [
+      Plot.ruleY([0], {stroke: rCol.gris}),
+      Plot.ruleX([0], {stroke: rCol.gris, clip: true}),
+      Plot.line(cercle, {x: "s", y: "t", stroke: rCol.bleu, strokeWidth: 3}),
+      Plot.line([X, Y], {x: "s", y: "t", stroke: rCol.gris, strokeDasharray: "5,4"}),
+      Plot.dot([X, Y], {x: "s", y: "t", r: 5, fill: "currentColor"}),
+      Plot.text([X, Y], {x: "s", y: "t", text: "label", dx: 9, dy: -9, fontSize: 13, fontWeight: "bold"}),
+      Plot.dot(G, {x: "s", y: "t", r: 4, fill: rCol.violet}),
+      Plot.text(G, {x: "s", y: "t", text: "label", dy: -12, fill: rCol.violet, fontSize: 12}),
+      Plot.dot(jauges, {x: "s", y: "t", r: 6, fill: rCol.vert, stroke: "white"}),
+      Plot.text(jauges, {x: "s", y: "t", text: "label", dx: -10, dy: -10,
+                         fill: rCol.vert, fontSize: 14, fontWeight: "bold"}),
+      Plot.dot([{s: rC, t: 0}], {x: "s", y: "t", r: 4, fill: "white", stroke: "currentColor"}),
+      Plot.dot(P, {x: "s", y: "t", r: 6, fill: rCol.orange}),
+      Plot.text(P, {x: "s", y: "t", text: "label", dx: "dx", dy: 14, textAnchor: "anchor",
+                    fill: rCol.orange, fontSize: 12, fontWeight: "bold"})
+    ]
+  });
+}
+```
+:::
+
+::: {.column width="50%"}
+#### Rosette et directions principales
+
+```{ojs}
+//| echo: false
+{
+  if (!rOK) return html`<p><em>Choisissez trois directions de jauges différentes.</em></p>`;
+  const dir = t => [Math.cos(t * rDeg), Math.sin(t * rDeg)];
+  const seg = (n, L) => [{x: -L * n[0], y: -L * n[1]}, {x: L * n[0], y: L * n[1]}];
+  const jauges = [["a", rTa, rEa], ["b", rTb, rEb], ["c", rTc, rEc]];
+  const e1 = dir(rThDeg), e2 = dir(rThDeg + 90);
+  const marks = [
+    Plot.ruleX([0], {stroke: rCol.gris}), Plot.ruleY([0], {stroke: rCol.gris}),
+    Plot.line(seg(e1, 1.6), {x: "x", y: "y", stroke: rCol.orange, strokeWidth: 2, strokeDasharray: "7,4"}),
+    Plot.line(seg(e2, 1.6), {x: "x", y: "y", stroke: rCol.bleu, strokeWidth: 2, strokeDasharray: "7,4"}),
+    Plot.text([{x: 1.45 * e1[0], y: 1.45 * e1[1], t: "I"}],
+              {x: "x", y: "y", text: "t", fill: rCol.orange, fontSize: 15, fontWeight: "bold", dy: -10}),
+    Plot.text([{x: 1.45 * e2[0], y: 1.45 * e2[1], t: "II"}],
+              {x: "x", y: "y", text: "t", fill: rCol.bleu, fontSize: 15, fontWeight: "bold", dy: -10})
+  ];
+  for (const [n, t, e] of jauges) {
+    const u = dir(t);
+    marks.push(
+      Plot.line(seg(u, 0.85), {x: "x", y: "y", stroke: rCol.vert, strokeWidth: 9, strokeOpacity: 0.25}),
+      Plot.line(seg(u, 0.85), {x: "x", y: "y", stroke: rCol.vert, strokeWidth: 2}),
+      Plot.text([{x: 1.12 * u[0], y: 1.12 * u[1], t: `${n} : ${e} µm/m`}],
+                {x: "x", y: "y", text: "t", fill: rCol.vert, fontSize: 12, fontWeight: "bold"})
+    );
+  }
+  return Plot.plot({
+    width: 420, height: 420,
+    x: {domain: [-1.7, 1.7], label: "x →"},
+    y: {domain: [-1.7, 1.7], label: "↑ y"},
+    grid: true,
+    marks
+  });
+}
+```
+:::
+::::
+
+Les points verts a, b et c sont les trois jauges : sur le cercle de Mohr, deux
+jauges séparées d'un angle α dans la rosette sont séparées de 2α sur le cercle.
+Les droites en pointillés sont les directions principales I et II.
+
+</details>
