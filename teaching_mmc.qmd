@@ -7,6 +7,7 @@ toc-title: "Sur cette page"
 toc-location: left
 ---
 
+
 ### Exercice - cercle de Mohr interactif
 
 ::: {.mohr-panel}

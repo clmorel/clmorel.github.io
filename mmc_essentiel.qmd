@@ -1,0 +1,391 @@
+---
+title: "MMC – L'essentiel à retenir"
+title-block-banner: images/banner_mohr.jpg
+title-block-banner-color: "#ffffff"
+toc: true
+toc-title: "Sur cette page"
+toc-location: left
+toc-depth: 2
+---
+
+Fiche de synthèse du cours de **Mécanique des Milieux Continus** (L3 Génie Mécanique,
+Université de Toulouse). Elle rassemble les définitions et les formules à connaître ;
+les démonstrations et les exemples sont dans le polycopié et les TD.
+
+Pour s'entraîner : [exercices interactifs (cercle de Mohr, rosettes)](teaching_mmc.qmd).
+
+Notations : $\vec{u}$ vecteur, $\underline{\underline{A}}$ tenseur d'ordre 2,
+$\underline{\underline{I}}$ tenseur identité, convention d'Einstein (sommation sur
+les indices répétés).
+
+## 1. Les quatre ingrédients d'un problème de MMC
+
+Un **milieu continu** est un milieu dont on suppose la matière répartie de façon
+continue : les grandeurs physiques (masse volumique, déplacement, contraintes…)
+sont des **champs** définis en chaque point et continûment dérivables.
+
+Tout problème de mécanique des milieux continus repose sur :
+
+| Ingrédient | Ce qu'il décrit | Dans ce cours |
+|:--|:--|:--|
+| **Cinématique** | le mouvement et la déformation du milieu | déplacement $\vec{u}$, déformations $\underline{\underline{\varepsilon}}$ |
+| **Équations de conservation** | les lois universelles | masse, quantité de mouvement |
+| **Loi de comportement** | la réponse propre au matériau | élasticité linéaire isotrope |
+| **Conditions aux limites** | ce qui est imposé sur la frontière | déplacements ou efforts imposés |
+
+Cadre du cours : référentiel galiléen, **hypothèse des petites perturbations (HPP)**
+(petits déplacements et petites déformations), mécanique principalement.
+
+**Ordres de grandeur** de masse volumique : acier ≈ 7 800 kg/m³,
+aluminium ≈ 2 700 kg/m³, or ≈ 19 300 kg/m³.
+
+## 2. Outils mathématiques
+
+**Changement de base** : si $\vec{e_i^\star} = \alpha_{ij}\,\vec{e_j}$ avec
+$\mathbb{A}^{-1} = {}^t\mathbb{A}$, alors $x_i^\star = \alpha_{ij}\,x_j$ et, pour un
+tenseur d'ordre 2, $\mathbb{T}^\star = \mathbb{A}\,\mathbb{T}\,{}^t\mathbb{A}$.
+
+| Opérateur | S'applique à | Résultat (repère cartésien) |
+|:--|:--|:--|
+| Produit scalaire | 2 vecteurs | $\vec a \cdot \vec b = a_i b_i$ |
+| Trace | tenseur | $\operatorname{tr}\underline{\underline{A}} = A_{ii} = A_{11}+A_{22}+A_{33}$ |
+| Gradient | scalaire $f$ | vecteur $\left(\dfrac{\partial f}{\partial x_i}\right)$ |
+| Gradient | vecteur $\vec u$ | tenseur $\left(\dfrac{\partial u_i}{\partial x_j}\right)$ |
+| Divergence | vecteur $\vec F$ | scalaire $\dfrac{\partial F_i}{\partial x_i}$ |
+| Divergence | tenseur $\underline{\underline{F}}$ | vecteur $\left(\dfrac{\partial F_{ij}}{\partial x_j}\right)$ |
+| Laplacien | scalaire $f$ | $\Delta f = \operatorname{div}(\vec{\operatorname{grad}} f) = \dfrac{\partial^2 f}{\partial x_i \partial x_i}$ |
+
+::: {.callout-important appearance="simple"}
+## Diagonalisation
+
+Les **valeurs propres** $\lambda$ d'un tenseur symétrique $\underline{\underline{A}}$
+sont les racines de $\det(\underline{\underline{A}} - \lambda\,\underline{\underline{I}}) = 0$.
+Les **vecteurs propres** $\vec{X}$ associés vérifient
+$(\underline{\underline{A}} - \lambda\,\underline{\underline{I}})\,\vec{X} = \vec 0$.
+Un tenseur symétrique réel a 3 valeurs propres réelles et une base propre orthonormée :
+dans cette base, il est diagonal.
+:::
+
+## 3. Cinématique
+
+Deux façons de décrire le mouvement :
+
+- **Lagrange** : on **suit chaque particule** repérée par sa position initiale $\vec X$
+  ($\vec x = \vec X + \vec u(\vec X, t)$). Description naturelle des **solides**.
+- **Euler** : on **regarde ce qui passe en un point fixe** $\vec x$ de l'espace.
+  Description naturelle des **fluides**.
+
+::: {.callout-important appearance="simple"}
+## Dérivée particulaire
+
+Variation d'une grandeur $f$ en suivant la particule dans son mouvement :
+
+$$
+\frac{\mathrm{D}f}{\mathrm{D}t} = \underbrace{\frac{\partial f}{\partial t}}_{\text{dérivée locale}}
++ \underbrace{\vec v \cdot \vec{\operatorname{grad}}\, f}_{\text{dérivée convective}}
+\qquad\qquad
+\frac{\mathrm{D}\vec A}{\mathrm{D}t} = \frac{\partial \vec A}{\partial t}
++ \underline{\underline{\operatorname{grad}}}\,\vec A \cdot \vec v
+$$
+:::
+
+## 4. Contraintes
+
+### Vecteur contrainte
+
+Les efforts de cohésion exercés à travers une facette $\mathrm{d}S$ de normale
+sortante $\vec n$ définissent le **vecteur contrainte** :
+
+$$
+\vec C(M, \vec n) = \lim_{\mathrm{d}S \to 0} \frac{\mathrm{d}\vec F}{\mathrm{d}S}
+\qquad \text{(en Pa, souvent en MPa)}
+$$
+
+Il dépend du point **et** de l'orientation de la facette. On le décompose en :
+
+$$
+\vec C(M,\vec n) = \sigma\,\vec n + \tau\,\vec t
+\qquad\text{avec}\qquad
+\sigma = \vec C \cdot \vec n \quad\text{(normale)},
+\qquad
+\tau = \vec C \cdot \vec t \quad\text{(tangentielle)}
+$$
+
+- $\sigma > 0$ : **traction** ; $\sigma < 0$ : **compression** ;
+  $\sigma = 0$ et $\tau \neq 0$ : **cisaillement pur**.
+- **Actions réciproques** : $\vec C(M, -\vec n) = -\vec C(M, \vec n)$.
+
+### Tenseur des contraintes
+
+::: {.callout-important appearance="simple"}
+## Théorème de Cauchy
+
+$$
+\vec C(M, \vec n) = \underline{\underline{\sigma}}(M) \cdot \vec n
+\qquad\Longleftrightarrow\qquad
+C_i = \sigma_{ij}\, n_j
+\qquad\qquad
+\underline{\underline{\sigma}} =
+\begin{pmatrix}
+\sigma_{xx} & \sigma_{xy} & \sigma_{xz} \\
+\sigma_{xy} & \sigma_{yy} & \sigma_{yz} \\
+\sigma_{xz} & \sigma_{yz} & \sigma_{zz}
+\end{pmatrix}
+$$
+
+- Termes **diagonaux** : contraintes normales ; termes **hors diagonale** : cisaillements.
+- $\sigma_{ij}$ : $i$ = direction de la contrainte, $j$ = normale à la facette.
+- Le tenseur est **symétrique** : $\sigma_{ij} = \sigma_{ji}$ (équilibre des moments
+  sur un élément de volume).
+:::
+
+**Contraintes principales** : les valeurs propres $\sigma_I \geq \sigma_{II} \geq \sigma_{III}$
+de $\underline{\underline{\sigma}}$. Dans le repère principal (vecteurs propres), le tenseur est
+diagonal : les facettes principales ne subissent **aucun cisaillement**.
+
+### Cercle de Mohr (état plan)
+
+Pour une facette dont la normale fait un angle $\alpha$ avec la direction principale $\vec X_I$ :
+
+$$
+\sigma = \frac{\sigma_I + \sigma_{II}}{2} + \frac{\sigma_I - \sigma_{II}}{2}\cos 2\alpha
+\qquad\qquad
+\tau = -\frac{\sigma_I - \sigma_{II}}{2}\sin 2\alpha
+$$
+
+d'où $(\sigma - l)^2 + \tau^2 = R^2$ : quand la facette tourne, l'extrémité du vecteur
+contrainte décrit un **cercle** dans le plan $(\sigma, \tau)$.
+
+::: {.callout-important appearance="simple"}
+## Construction à partir de $\sigma_{xx}$, $\sigma_{yy}$, $\sigma_{xy}$
+
+$$
+\text{centre } l = \frac{\sigma_{xx} + \sigma_{yy}}{2}
+\qquad
+\text{rayon } R = \sqrt{\left(\frac{\sigma_{xx} - \sigma_{yy}}{2}\right)^2 + \sigma_{xy}^2}
+$$
+
+$$
+\sigma_{I,II} = l \pm R
+\qquad
+\tau_{max} = R
+\qquad
+\tan 2\theta_p = \frac{2\,\sigma_{xy}}{\sigma_{xx} - \sigma_{yy}}
+$$
+
+- Les intersections avec l'axe $\sigma$ donnent les **contraintes principales**.
+- Le haut et le bas du cercle donnent le **cisaillement maximal**, atteint sur les
+  facettes à **45°** des directions principales.
+- Une rotation de la facette d'un angle $\theta$ correspond à une rotation de
+  **$-2\theta$** sur le cercle.
+:::
+
+**En 3D** : trois cercles, construits sur $(\sigma_I, \sigma_{II})$, $(\sigma_{II}, \sigma_{III})$
+et $(\sigma_I, \sigma_{III})$. Le vecteur contrainte se trouve entre le grand cercle et
+les deux petits.
+
+$$
+|\sigma|_{max} = \max\left(|\sigma_I|, |\sigma_{II}|, |\sigma_{III}|\right)
+\qquad\qquad
+\tau_{max} = \frac{\sigma_I - \sigma_{III}}{2}
+$$
+
+### États de contrainte particuliers
+
+| État | Tenseur | Contraintes principales | Cercle de Mohr |
+|:--|:--|:--|:--|
+| Plan | $\begin{pmatrix}\sigma_{11} & \sigma_{12} & 0\\ \sigma_{12} & \sigma_{22} & 0 \\ 0 & 0 & 0\end{pmatrix}$ | $\sigma_I$, $\sigma_{II}$, $0$ | un cercle dans le plan + l'origine |
+| Traction simple | $\begin{pmatrix}\sigma & 0 & 0\\ 0 & 0 & 0 \\ 0 & 0 & 0\end{pmatrix}$ | $\sigma$, $0$, $0$ | passe par l'origine, $\tau_{max} = \sigma/2$ |
+| Cisaillement pur | $\begin{pmatrix}0 & \tau & 0\\ \tau & 0 & 0 \\ 0 & 0 & 0\end{pmatrix}$ | $\tau$, $-\tau$, $0$ | centré sur l'origine, rayon $\tau$ |
+| Hydrostatique | $\begin{pmatrix}\sigma & 0 & 0\\ 0 & \sigma & 0 \\ 0 & 0 & \sigma\end{pmatrix}$ | $\sigma$, $\sigma$, $\sigma$ | réduit à un point (tenseur sphérique) |
+
+## 5. Déformations
+
+Pour deux points voisins $M$ et $N$, le déplacement de $N$ s'écrit (HPP) :
+
+$$
+\vec U(N) = \vec U(M) + \underline{\underline{\operatorname{grad}}}\,\vec U \cdot \vec{MN}
+\qquad\text{avec}\qquad
+\left(\underline{\underline{\operatorname{grad}}}\,\vec U\right)_{ij} = \frac{\partial u_i}{\partial x_j}
+$$
+
+On décompose le gradient en partie symétrique et antisymétrique :
+
+::: {.callout-important appearance="simple"}
+## Tenseur des déformations et rotation
+
+$$
+\underline{\underline{\varepsilon}} = \frac{1}{2}\left(\underline{\underline{\operatorname{grad}}}\,\vec U
++ {}^t\underline{\underline{\operatorname{grad}}}\,\vec U\right)
+\qquad\Longleftrightarrow\qquad
+\varepsilon_{ij} = \frac{1}{2}\left(\frac{\partial u_i}{\partial x_j} + \frac{\partial u_j}{\partial x_i}\right)
+$$
+
+$$
+\underline{\underline{\omega}} = \frac{1}{2}\left(\underline{\underline{\operatorname{grad}}}\,\vec U
+- {}^t\underline{\underline{\operatorname{grad}}}\,\vec U\right)
+$$
+
+$$
+\vec U(N) = \underbrace{\vec U(M)}_{\text{translation}}
++ \underbrace{\underline{\underline{\omega}} \cdot \vec{MN}}_{\text{rotation}}
++ \underbrace{\underline{\underline{\varepsilon}} \cdot \vec{MN}}_{\text{déformation pure}}
+$$
+:::
+
+**Signification des composantes** :
+
+- $\varepsilon_{11}$, $\varepsilon_{22}$, $\varepsilon_{33}$ : **allongements relatifs**
+  ($\Delta L / L$) dans les directions $x_1$, $x_2$, $x_3$ ;
+- $\varepsilon_{12}$, $\varepsilon_{13}$, $\varepsilon_{23}$ : **demi-distorsions**.
+  La **distorsion** $\gamma_{ij} = 2\,\varepsilon_{ij}$ est la diminution de l'angle
+  initialement droit entre $\vec{x_i}$ et $\vec{x_j}$ ;
+- **variation relative de volume** : $\dfrac{\Delta V}{V} = \operatorname{tr}\underline{\underline{\varepsilon}}
+  = \varepsilon_{11} + \varepsilon_{22} + \varepsilon_{33}$.
+
+**Vecteur déformation** dans la direction $\vec n$ :
+$\vec\varepsilon(M, \vec n) = \underline{\underline{\varepsilon}} \cdot \vec n$.
+L'allongement relatif dans la direction $\vec n$ vaut
+$\varepsilon_n = \vec n \cdot \underline{\underline{\varepsilon}} \cdot \vec n$.
+
+Le tenseur des déformations est symétrique : on définit comme pour les contraintes des
+**déformations principales** et un **cercle de Mohr des déformations**, tracé dans le
+plan $(\varepsilon, \gamma/2)$.
+
+## 6. Équilibre : loi fondamentale
+
+**Théorème de transport de Reynolds**, pour un domaine matériel $\Omega(t)$ :
+
+$$
+\frac{\mathrm{d}}{\mathrm{d}t}\int_{\Omega(t)} f \,\mathrm{d}V
+= \int_{\Omega(t)} \left( \frac{\mathrm{D}f}{\mathrm{D}t} + f\, \operatorname{div}\vec v \right) \mathrm{d}V
+$$
+
+::: {.callout-important appearance="simple"}
+## Conservation de la masse
+
+$$
+m = \int_{\Omega(t)} \rho \,\mathrm{d}V = \text{cste}
+\qquad\Longrightarrow\qquad
+\frac{\mathrm{D}\rho}{\mathrm{D}t} + \rho\, \operatorname{div}\vec v = 0
+$$
+
+- En **HPP** : $\rho \approx \rho_0$, la conservation de la masse est automatiquement vérifiée.
+- Matériau **incompressible** : $\operatorname{div}\vec v = 0$, soit en HPP
+  $\operatorname{tr}\underline{\underline{\varepsilon}} = 0$.
+:::
+
+::: {.callout-important appearance="simple"}
+## Conservation de la quantité de mouvement
+
+$$
+\vec p = \int_{\Omega(t)} \rho\,\vec v \,\mathrm{d}V
+\qquad\qquad
+\frac{\mathrm{d}\vec p}{\mathrm{d}t} = \vec R
+= \int_{\Omega} \vec f_v \,\mathrm{d}V + \int_{\partial\Omega} \underline{\underline{\sigma}}\cdot\vec n \,\mathrm{d}S
+$$
+
+Avec le théorème de la divergence, on obtient l'**équation locale du mouvement** :
+
+$$
+\operatorname{div}\underline{\underline{\sigma}} + \vec f_v = \rho\,\vec\gamma
+\qquad\left(\vec\gamma = \frac{\partial^2 \vec u}{\partial t^2}\right)
+$$
+
+| Cas | Équation |
+|:--|:--|
+| Dynamique | $\operatorname{div}\underline{\underline{\sigma}} + \vec f_v = \rho\,\vec\gamma$ |
+| Équilibre (statique ou quasi-statique) | $\operatorname{div}\underline{\underline{\sigma}} + \vec f_v = \vec 0$ |
+| Équilibre sans forces de volume | $\operatorname{div}\underline{\underline{\sigma}} = \vec 0$ |
+
+Conditions aux limites en efforts : $\underline{\underline{\sigma}} \cdot \vec n = \vec C^{\,d}$
+sur la partie de la frontière où les efforts sont imposés.
+:::
+
+**En 2D, sans forces de volume**, l'équilibre s'écrit :
+
+$$
+\frac{\partial \sigma_{xx}}{\partial x} + \frac{\partial \sigma_{xy}}{\partial y} = 0
+\qquad\qquad
+\frac{\partial \sigma_{xy}}{\partial x} + \frac{\partial \sigma_{yy}}{\partial y} = 0
+$$
+
+## 7. Élasticité linéaire
+
+**Hypothèses** : comportement **élastique** (réversible, retour à l'état naturel),
+**linéaire** (contraintes proportionnelles aux déformations), **homogène** (mêmes
+coefficients en tout point) et **isotrope** (même comportement dans toutes les
+directions). Pour un matériau isotrope, les directions principales des contraintes et
+des déformations sont **les mêmes**.
+
+**Essai de traction** (domaine élastique) :
+
+$$
+\sigma = E\,\varepsilon
+\qquad\qquad
+\varepsilon_{transverse} = -\nu\,\varepsilon_{longitudinale}
+$$
+
+avec $E$ le module d'Young (en Pa) et $\nu$ le coefficient de Poisson (sans dimension,
+$0 \leq \nu < 0{,}5$). Ordres de grandeur : acier $E \approx 210$ GPa, aluminium
+$E \approx 70$ GPa, $\nu \approx 0{,}3$ pour les métaux.
+
+::: {.callout-important appearance="simple"}
+## Loi de Hooke généralisée (déformations ← contraintes)
+
+$$
+\underline{\underline{\varepsilon}} = \frac{1+\nu}{E}\,\underline{\underline{\sigma}}
+- \frac{\nu}{E}\,\operatorname{tr}(\underline{\underline{\sigma}})\,\underline{\underline{I}}
+\qquad\Longleftrightarrow\qquad
+\varepsilon_{ij} = \frac{1+\nu}{E}\,\sigma_{ij} - \frac{\nu}{E}\,\sigma_{kk}\,\delta_{ij}
+$$
+
+En composantes :
+
+$$
+\varepsilon_{11} = \frac{1}{E}\left[\sigma_{11} - \nu(\sigma_{22} + \sigma_{33})\right]
+\qquad
+\varepsilon_{12} = \frac{\sigma_{12}}{2G}
+\qquad
+G = \frac{E}{2(1+\nu)}
+$$
+
+(et de même par permutation des indices). $G$ est le module de cisaillement
+(module de Coulomb).
+:::
+
+::: {.callout-important appearance="simple"}
+## Loi inverse (contraintes ← déformations)
+
+$$
+\underline{\underline{\sigma}} = 2\mu\,\underline{\underline{\varepsilon}}
++ \lambda\,\operatorname{tr}(\underline{\underline{\varepsilon}})\,\underline{\underline{I}}
+\qquad\qquad
+\mu = G = \frac{E}{2(1+\nu)}
+\qquad
+\lambda = \frac{E\,\nu}{(1+\nu)(1-2\nu)}
+$$
+
+$\lambda$ et $\mu$ sont les **coefficients de Lamé**.
+:::
+
+## 8. Critères de limite élastique
+
+On vérifie qu'en **tout point** de la pièce, l'état de contrainte reste dans le
+domaine élastique, avec $\sigma_e$ la limite d'élasticité en traction.
+
+| Critère | Condition à vérifier |
+|:--|:--|
+| Contraintes admissibles | $\sigma_{max} \leq \sigma_a = \dfrac{\sigma_e}{K}$ et $\tau_{max} \leq \tau_a = \dfrac{\tau_e}{K}$ ($K$ : coefficient de sécurité) |
+| **Tresca** (cisaillement maximal) | $\sigma_I - \sigma_{III} \leq \sigma_e$, soit $\tau_{max} \leq \dfrac{\sigma_e}{2}$ |
+| **Von Mises** (énergie de distorsion) | $\sqrt{\dfrac{1}{2}\left[(\sigma_I - \sigma_{II})^2 + (\sigma_{II} - \sigma_{III})^2 + (\sigma_{III} - \sigma_I)^2\right]} \leq \sigma_e$ |
+
+**Von Mises dans un repère quelconque** :
+
+$$
+\sqrt{\frac{1}{2}\left[(\sigma_{11} - \sigma_{22})^2 + (\sigma_{22} - \sigma_{33})^2 + (\sigma_{33} - \sigma_{11})^2\right]
++ 3\left(\sigma_{12}^2 + \sigma_{23}^2 + \sigma_{13}^2\right)} \leq \sigma_e
+$$
+
+Le critère de Tresca est plus conservatif que celui de Von Mises : à $\sigma_e$ égal,
+il prédit la plastification un peu plus tôt (jusqu'à environ 15 % d'écart).

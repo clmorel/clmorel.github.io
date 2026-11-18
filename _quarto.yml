@@ -19,13 +19,18 @@ website:
       - href: cv.qmd
         text: CV
 
+
 format:
   html:
     theme: cosmo
     css: styles.css
-    toc: false
     lang: fr
-
+    page-layout: full
+    grid:
+      sidebar-width: 220px
+      body-width: 1400px
+      margin-width: 50px
+      gutter-width: 2rem
 
 
 

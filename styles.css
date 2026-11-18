@@ -194,3 +194,16 @@ details.mohr-reveal[open] {
 details.mohr-reveal > *:not(summary) {
   padding: 0 1.2rem;
 }
+
+/* ---------- Sommaire latéral compact ---------- */
+nav#TOC {
+  font-size: 0.82rem;
+}
+nav#TOC .toc-actions,
+nav#TOC h2 {
+  font-size: 0.9rem;
+}
+nav#TOC ul li a {
+  padding-top: 0.15rem;
+  padding-bottom: 0.15rem;
+}
